@@ -57,7 +57,7 @@ body {
 .top-hearts,
 .bottom-hearts {
     position: absolute;
-    text-align: left;
+    text-align: center;
     color: #e91e63;
     font-size: clamp(20px, 7vw, 27px);
     letter-spacing: clamp(1px, 0.6vw, 4px);
