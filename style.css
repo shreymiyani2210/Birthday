@@ -1,0 +1,464 @@
+body {
+    background-color: #fff0f5;
+    font-family: Arial, sans-serif;/*Tells which font to use for texts*/
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Birthday card */
+.card {
+    background-color: white;
+
+    width: 90%;
+    max-width: 1000px;
+    min-width: 600px;
+    box-sizing: border-box;
+    min-height: 650px;
+
+    padding: clamp(16px, 4vw, 30px);
+    margin: clamp(25px, 10vh, 100px) auto;
+
+    border-radius: 20px;
+    box-shadow: 0 4px 15px gray;/*Add a shadow behind the card*/
+
+    border: 15px solid transparent;
+    position: relative;
+}
+
+.card h1 {
+    color: #e91e63;
+    font-size: clamp(26px, 6vw, 40px);
+    margin-bottom: 20px;
+}
+
+.card p {
+    color: #555555;
+    font-size: clamp(20px, 7vw, 23px);
+    line-height: 1.6;
+    overflow-wrap: break-word;
+}
+#closing {
+    text-align: right;
+}
+
+.card h2 {
+    color: #9c27b0;
+    font-size: clamp(18px, 4vw, 22px);
+    margin-top: 25px;
+}
+
+.decoration {
+    font-size: clamp(16px, 4vw, 25px);
+    margin-bottom: 15px;
+}
+
+/* Top and bottom heart decorations */
+.top-hearts,
+.bottom-hearts {
+    position: absolute;
+    text-align: left;
+    color: #e91e63;
+    font-size: clamp(20px, 7vw, 27px);
+    letter-spacing: clamp(1px, 0.6vw, 4px);
+    left: 0px;
+    width: calc(100% + 30px);
+    white-space: nowrap;
+}
+
+.top-hearts {
+    top: -14px;
+}
+
+.bottom-hearts {
+    bottom: -14px;
+}
+
+/* Left and right heart decorations */
+.left-hearts,
+.right-hearts {
+    position: absolute;/*Lets us place decorations at precise positions. */
+    top: 0;
+    height: 100%;
+    writing-mode: vertical-rl;/*arranges text vertically.*/
+    text-align: center;
+    color: #e91e63;
+    font-size: clamp(20px, 7vw, 27px);
+    letter-spacing: clamp(1px, 0.6vw, 4px);
+    white-space: nowrap;
+}
+
+.left-hearts {
+    left: -14px;
+}
+
+.right-hearts {
+    right: -14px;
+}
+
+.landing{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width:100%;/*Makes it as wide as the screen.*/
+    height:100vh;/*Height according to the screen*/
+    height:100dvh;
+
+    box-sizing: border-box;
+    overflow: hidden;/*Prevents content from extending outside the screen and creating scrollbars.*/
+
+    display:flex;/*It allows us to arrange the elements inside it and control their positions easily.*/
+    flex-direction:column;/*column changes the direction to vertical.*/
+    justify-content: center;
+    align-items: center;
+
+    z-index:10;/*places the landing page above the birthday card.*/
+}
+
+/* Landing page heading */
+.landing h1{
+    color:darkblue;
+    font-size:clamp(30px, 8vw, 100px);
+    margin: 0 15px 30px;
+}
+
+/* Gift box */
+.gift{
+    cursor:pointer;
+    transition:transform 0.3s;
+    width: clamp(120px, 45vw, 250px);
+    height: clamp(120px, 45vw, 250px);
+    flex-shrink: 0;
+}
+
+/* Makes the gift image adjust to the gift container */
+.gift img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Instruction below gift */
+.landing p {
+    color: #713b70;
+    font-size: clamp(14px, 3.5vw, 20px);
+    margin: 25px 15px 0;
+}
+
+
+/* Curtain container */
+.curtains {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/*Back button */
+.card button {
+    position: relative;
+    z-index:0   ;
+    font-size: clamp(100px, 10vw, 20px);
+    padding: clamp(70px, 2vw, 12px) clamp(14px, 4vw, 30px);
+}
+
+/* Left curtain */
+.left-curtain {
+    width: 50%;
+    height: 100%;
+    background:repeating-linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.18) 0px,
+            rgba(255, 255, 255, 0.12) 15px,
+            transparent 30px,
+            rgba(0, 0, 0, 0.18) 45px
+    ),/*
+                A. 90deg
+            This specifies the direction of the gradient.
+            - 0deg → Upwards.
+            - 90deg → Towards the right.
+            - 180deg → Downwards.
+            - 270deg → Towards the left.
+            Since the gradient moves horizontally, it produces vertical stripes.
+
+            B. The colour stops
+            Code	                                Meaning
+            rgba(0, 0, 0, 0.18) 0px	        Slightly transparent black at 0px
+            rgba(255, 255, 255, 0.12) 15px	Slightly transparent white at 15px
+            transparent 30px	            Fully transparent at 30px
+            rgba(0, 0, 0, 0.18) 45px	    Slightly transparent black at 45px
+
+            These changing colours create the appearance of light and dark folds.*/
+    linear-gradient(to left, orange, white,darkgreen);
+
+    border-right: 4px solid #f7c5d8;/*Border is the edge of individual curtain*/
+    background-size: 100% 100%;/*This controls the size of the background image or
+    background pattern inside an element. CAN OMIT, as curtain itself background here*/
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+    /*Part	            Meaning
+    inset	            Shadow appears inside
+    First 0	            Horizontal shadow movement
+    Second 0	        Vertical shadow movement
+    30px	            Blur amount
+    rgba(0, 0, 0, 0.3)	Black colour with 30% opacity
+
+    rgba:-It stands for:
+    - R = Red
+    - G = Green
+    - B = Blue
+    - A = Alpha (transparency)
+    Here, 0, 0, 0 means black, and 0.3 means 30% opacity.*/
+
+    transition: transform 1.5s ease-in-out;
+}
+
+/* Right curtain */
+.right-curtain {
+    width: 50%;
+    height: 100%;
+    background:
+            repeating-linear-gradient(
+                    270deg,
+                    rgba(0, 0, 0, 0.18) 0px,
+                    rgba(255, 255, 255, 0.12) 15px,
+                    transparent 30px,
+                    rgba(0, 0, 0, 0.18) 45px
+            ),
+            linear-gradient(to right, orange, white,darkgreen);
+
+    border-left: 4px solid #f7c5d8;/*Border is the edge of individual curtain*/
+    background-size: 100% 100%;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+
+    transition: transform 1.5s ease-in-out;
+}
+
+/* Open left curtain */
+.left-curtain.open {
+    transform: translateX(-100%);
+    /*translateX()
+Moves an element along the horizontal (X) axis.
+- Positive value → Right
+- Negative value → Left
+3. -100%
+This is the important part!
+
+It moves the element left by 100% of its own width, not 100% of the screen width.*/
+}
+
+/* Open right curtain */
+.right-curtain.open {
+    transform: translateX(100%);
+}
+
+.landing.hide {
+    display: none;
+}
+
+/*Rotating the chakra*/
+@keyframes rotateChakra {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+/*- @keyframes defines a custom animation.
+- from specifies the starting position.
+- to specifies the ending position.
+- rotate(360deg) completes one full rotation.*/
+.gift img.spin {
+    animation: rotateChakra 2s linear;
+}
+
+/* Birthday decorations container */
+.page-decorations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Common image properties */
+.page-decorations img {
+    position: absolute;
+    height: auto;
+    pointer-events: none;
+}
+
+/* Balloons – upper left */
+.balloons {
+    width: clamp(65px, 12vw, 130px);
+    top: 5%;
+    left: 1%;
+}
+
+/* Cake – upper right */
+.cake {
+    width: clamp(90px, 15vw, 160px);
+    top: 1%;
+    right: 3%;
+}
+
+/* Gift – lower left */
+.gift-box {
+    width: clamp(65px, 12vw, 120px);
+    bottom: 3%;
+    left: 3%;
+}
+
+/* Confetti – entire page */
+.confetti {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    opacity: 0.25;
+}
+/* Second cake – bottom right */
+.bottom-cake {
+    width: clamp(90px, 15vw, 160px);
+    bottom: 0%;
+    right: 3%;
+}
+
+/* Hanging Birthday Banner */
+
+.birthday-banner {
+    position: fixed;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-120%);
+    z-index: 7;
+
+    background: linear-gradient(135deg, #ff80ab, #ce93d8);
+    color: white;
+
+    padding: 12px 25px;
+    border-radius: 0 0 15px 15px;
+
+    box-shadow: 0 4px 12px gray;
+
+    text-align: center;
+    white-space: nowrap;
+
+    visibility: hidden;
+}
+
+/* Hanging strings */
+.banner-strings {
+    position: absolute;
+    width: 100%;
+    height: 35px;
+    top: -35px;
+    left: 0;
+
+    border-left: 2px solid #d4a017;
+    border-right: 2px solid #d4a017;
+}
+
+/* Banner heading */
+.birthday-banner h1 {
+    font-size: clamp(16px, 3vw, 30px);
+    margin: 0;
+}
+
+/* Show and swing the banner */
+/* Show the banner */
+.birthday-banner.show {
+    visibility: visible;
+    animation: hangAndSwing 3s ease-in-out forwards;
+}
+
+/* Drop down and gently swing */
+@keyframes hangAndSwing {
+    0% {
+        transform: translateX(-50%) translateY(-120%) rotate(0deg);
+    }
+
+    40% {
+        transform: translateX(-50%) translateY(0) rotate(0deg);
+    }
+
+    55% {
+        transform: translateX(-50%) translateY(0) rotate(-4deg);
+    }
+
+    70% {
+        transform: translateX(-50%) translateY(0) rotate(4deg);
+    }
+
+    85% {
+        transform: translateX(-50%) translateY(0) rotate(-2deg);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0) rotate(0deg);
+    }
+}
+
+/* Colourful ribbon burst */
+
+.ribbon-burst {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    z-index: 9;
+    pointer-events: none;
+}
+
+.ribbon-burst span {
+    position: absolute;
+    width: 9px;
+    height: 35px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: ribbonBlast 2.5s ease-out forwards;
+}
+
+@keyframes ribbonBlast {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(0.5);
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y))
+        rotate(var(--rotation)) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Move banner to its final position */
+.birthday-banner.settle {
+    animation: settleBanner 0.8s ease-out forwards;
+}
+
+@keyframes settleBanner {
+    from {
+        top: 12%;
+    }
+
+    to {
+        top: 11%;
+    }
+}
